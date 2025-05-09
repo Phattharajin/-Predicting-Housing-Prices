@@ -79,8 +79,13 @@ def main():
     df = categorize_quality(df)
     df, X_scaled, y, features = perform_clustering(df)
 
-    print("Confusion Matrix:")
-    print(confusion_matrix(df['quality_label'], df['cluster']))
+from sklearn.preprocessing import LabelEncoder
+label_encoder = LabelEncoder()
+y_true = label_encoder.fit_transform(df['quality_label'])  
+y_pred = df['cluster']
+
+print("Confusion Matrix:")
+print(confusion_matrix(y_true, y_pred))
 
     plot_pca(df, X_scaled)
     plot_spider(df, features)
