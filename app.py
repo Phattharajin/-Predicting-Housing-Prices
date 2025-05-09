@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import StandardScaler, LabelEncoder
 from sklearn.cluster import KMeans
 from sklearn.decomposition import PCA
 from sklearn.metrics import confusion_matrix
@@ -79,13 +79,13 @@ def main():
     df = categorize_quality(df)
     df, X_scaled, y, features = perform_clustering(df)
 
-from sklearn.preprocessing import LabelEncoder
-label_encoder = LabelEncoder()
-y_true = label_encoder.fit_transform(df['quality_label'])  
-y_pred = df['cluster']
+    # Encode true labels for confusion matrix
+    label_encoder = LabelEncoder()
+    y_encoded = label_encoder.fit_transform(df['quality_label'])
+    y_pred = df['cluster']
 
-print("Confusion Matrix:")
-print(confusion_matrix(y_true, y_pred))
+    print("Confusion Matrix:")
+    print(confusion_matrix(y_encoded, y_pred))
 
     plot_pca(df, X_scaled)
     plot_spider(df, features)
