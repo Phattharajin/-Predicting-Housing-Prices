@@ -12,7 +12,7 @@ with open('kmeans_wine_model.pkl', 'rb') as f:
 
 # Streamlit config
 st.set_page_config(page_title="Wine K-Means Clustering", layout="centered")
-st.title("Wine K-Means Clustering Visualizer by Phattharajin Joyjaroen")
+st.title("Wine K-Means Clustering Visualizer by Project2_group3")
 
 # Load and scale wine data
 df = pd.read_csv("https://archive.ics.uci.edu/ml/machine-learning-databases/wine-quality/winequality-red.csv", sep=';')
